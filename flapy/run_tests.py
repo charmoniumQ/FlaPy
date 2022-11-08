@@ -566,17 +566,14 @@ class FlakyAnalyser:
             "will be executed each individually in a new pytest run. "
             'Example: "tests/test_file.py::test_func1 tests/test_file.py::TestClass::test_func2',
         )
-
         parser.add_argument(
             "--command-prefix",
             dest="command_prefix",
             required=False,
-            type=list,
             nargs="*",
             default=[],
             help="This list of arguments will precede the pytest command, e.g. `strace pytest ...`",
         )
-
         return parser
 
     def _configure_logger(self) -> logging.Logger:

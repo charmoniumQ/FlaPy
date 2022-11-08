@@ -9,8 +9,8 @@ WORKDIR /workdir
 
 # -- INSTALL FLAPY
 COPY clone_and_run_tests.sh .
-COPY dist/FlaPy-0.2.0-py3-none-any.whl .
-RUN ["pip", "install", "FlaPy-0.2.0-py3-none-any.whl"]
+COPY dist/flapy-0.2.0-py3-none-any.whl .
+RUN ["pip", "install", "flapy-0.2.0-py3-none-any.whl"]
 
 RUN apt-get update && apt-get install -y git libfaketime build-essential
 RUN git clone https://github.com/charmoniumQ/deterministic && env -C deterministic gcc -O2 -fPIC -shared -o deterministic_random_preload.so deterministic_random_preload.c

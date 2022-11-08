@@ -17,6 +17,7 @@ import contextlib
 import logging
 import os
 import re
+import shlex
 import shutil
 import subprocess
 import sys
@@ -307,7 +308,7 @@ class PyTestRunner:
                 env.add_package_for_installation("pytest-random-order==1.0.4")
 
             # START BUILDING COMMAND
-            command = ""
+            command = shlex.join(self._config.command_prefix)
 
             # USE TRACING?
             if self._config.trace not in [None, ""]:
@@ -562,6 +563,16 @@ class FlakyAnalyser:
             "Multiple names must be separated by spaces and "
             "will be executed each individually in a new pytest run. "
             'Example: "tests/test_file.py::test_func1 tests/test_file.py::TestClass::test_func2',
+        )
+
+        parser.add_argument(
+            "--command-prefix",
+            dest="command_prefix",
+            required=False,
+            type=list,
+            nargs="*",
+            default=[],
+            help="This list of arguments will precede the pytest command, e.g. `strace pytest ...`",
         )
 
         return parser

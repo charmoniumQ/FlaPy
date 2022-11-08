@@ -61,12 +61,12 @@ echo "flapy_container_id:     ${flapy_container_id}"    >> "$META_FILE"
 # -- EXECUTE CONTAINER
 if [[ $PROJECT_URL == http* ]]
 then
-    TMPDIR=$LOCAL_TMP podman --root "${LOCAL_PODMAN_ROOT}" run --rm \
+    TMPDIR=$LOCAL_TMP $podman_prefix podman --root "${LOCAL_PODMAN_ROOT}" run --rm \
         -v "$ITERATION_RESULTS_DIR:/results" \
         localhost/flapy \
         "${PROJECT_NAME}" "${PROJECT_URL}" "${PROJECT_HASH}" "${PYPI_TAG}" "${FUNCS_TO_TRACE}" "${TESTS_TO_BE_RUN}" "${NUM_RUNS}" "${PLUS_RANDOM_RUNS}" "${FLAPY_ARGS}"
 else
-    TMPDIR=$LOCAL_TMP podman --root "${LOCAL_PODMAN_ROOT}" run --rm \
+    TMPDIR=$LOCAL_TMP $podman_prefix podman --root "${LOCAL_PODMAN_ROOT}" run --rm \
         -v "$ITERATION_RESULTS_DIR:/results" \
         -v "$PROJECT_URL":"$PROJECT_URL" \
         localhost/flapy \

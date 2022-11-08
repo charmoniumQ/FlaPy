@@ -308,7 +308,7 @@ class PyTestRunner:
                 env.add_package_for_installation("pytest-random-order==1.0.4")
 
             # START BUILDING COMMAND
-            command = shlex.join(self._config.command_prefix)
+            command = shlex.join(self._config.command_prefix) + " "
 
             # USE TRACING?
             if self._config.trace not in [None, ""]:

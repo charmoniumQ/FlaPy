@@ -79,11 +79,11 @@ if [[ $FLAPY_INPUT_RUN_ON = "cluster" ]]; then
         --output="$ITERATION_RESULTS_DIR/log.out" \
         --error="$ITERATION_RESULTS_DIR/log.out" \
         -- \
-        run_container.sh \
+        timeout 1h run_container.sh \
             "${PROJECT_NAME}" "${PROJECT_URL}" "${PROJECT_HASH}" "${PYPI_TAG}" "${FUNCS_TO_TRACE}" "${TESTS_TO_BE_RUN}" "${NUM_RUNS}" "${FLAPY_INPUT_PLUS_RANDOM_RUNS}" "${ITERATION_RESULTS_DIR}" "${FLAPY_INPUT_OTHER_ARGS}" \
         & srunPid=$!
 elif [[ $FLAPY_INPUT_RUN_ON = "local" ]]; then
-    ./run_container.sh \
+    timeout 1h ./run_container.sh \
         "${PROJECT_NAME}" "${PROJECT_URL}" "${PROJECT_HASH}" "${PYPI_TAG}" "${FUNCS_TO_TRACE}" "${TESTS_TO_BE_RUN}" "${NUM_RUNS}" "${FLAPY_INPUT_PLUS_RANDOM_RUNS}" "${ITERATION_RESULTS_DIR}" "${FLAPY_INPUT_OTHER_ARGS}" \
     & srunPid=$!
 else

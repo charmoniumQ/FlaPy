@@ -344,8 +344,8 @@ class PyTestRunner:
                 'echo "which pip:    $(which pip)"',
                 'echo "which pytest: $(which pytest)"',
                 'echo "python path: "',
-                'python -c "print(id("hello world"))"',
-                'python -c "print(id("hello world"))"',
+                'python -c "print(id(object()))"',
+                'python -c "print(id(object()))"',
                 'python -c "import sys; print(sys.path)"',
                 command,
             ]
